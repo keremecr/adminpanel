@@ -14,4 +14,10 @@ class Dersler extends Model
     public function groups(){
       return $this->belongsToMany(Gruplar::class,'dersgruplari','ders_id','grup_id')->withPivot(['katsayi']);
     }
+    public function teachers(){
+      return $this->hasMany(\App\Models\Teacher::class, 'ders_id');
+    }
+    public function subjects(){
+      return $this->hasMany(\App\Models\Subject::class, 'ders_id');
+    }    
 }

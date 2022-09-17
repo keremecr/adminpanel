@@ -1,6 +1,9 @@
 <x-slot name="header">Ders Güncelle</x-slot>
   <div class="card">
     <div class="card-body">
+      @if(session()->has('message'))
+        <div style="margin-left:150px;" class="alert alert-info">{{session('message')}}</div>
+      @endif
         <form wire:submit.prevent="updateLesson" action="#">
           @method('PUT')
           @csrf

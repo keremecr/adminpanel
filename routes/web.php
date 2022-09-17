@@ -26,6 +26,9 @@ use App\Http\Livewire\Studentcreate;
 use App\Models\Exam;
 use App\Http\Livewire\Studentanswers;
 use App\Http\Livewire\Examanalyze;
+use App\Http\Livewire\Subjecttraining;
+use App\Http\Livewire\Appointments;
+use App\Http\Livewire\Appointmentupdate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,4 +77,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
   Route::get('/studentcreate',Studentcreate::class);
   Route::get('/exams/studentanswers/{exam}',Studentanswers::class);
   Route::get('/exams/examanalyze/{exam}',Examanalyze::class);
+  Route::get('/subjecttraining/{subject}',Subjecttraining::class);
+  Route::get('/appointments',Appointments::class)->name('appointments');
+  Route::get('/appointmentupdate/{id}',Appointmentupdate::class);
 });

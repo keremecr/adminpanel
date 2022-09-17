@@ -11,7 +11,7 @@
         <div class="text-danger">{{$message}}</div>
         @enderror
         <div class="input-group mb-3">
-          <input wire:model="email" type="email" class="form-control" placeholder="Email adresi">
+          <input wire:model="email" type="email" class="form-control" @if(Cookie::has('email')) value="{{Cookie::get('email')}}" @endif name="email" placeholder="Email adresi">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -22,7 +22,7 @@
         <div class="text-danger">{{$message}}</div>
         @enderror
         <div class="input-group mb-3">
-          <input  wire:model="password" type="password" class="form-control" placeholder="Şifre">
+          <input  wire:model="password" type="password" class="form-control" @if(Cookie::has('password')) value="{{Cookie::get('password')}}" @endif name="password" placeholder="Şifre">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -32,7 +32,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <input wire:model="remember" @if(Cookie::has('password')) checked @endif type="checkbox" id="remember">
               <label for="remember">
                 Beni Hatırla
               </label>

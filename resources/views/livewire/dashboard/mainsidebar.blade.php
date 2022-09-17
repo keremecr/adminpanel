@@ -97,6 +97,27 @@
           </a>
         </li>
         @endif
+        @if(auth()->user()->type=="admin")
+        <li class="nav-item">
+          <a href="/dashboard/appointments" class="nav-link">
+            <i class="nav-icon fa-thin fa-book-open"></i>
+            <p>
+              Randevular
+            </p>
+          </a>
+        </li>
+        @endif
+        @if(auth()->user()->type=="user")
+        <li class="nav-item">
+          <a href="/dashboard/appointments" class="nav-link">
+            <i class="nav-icon fa-thin fa-book-open"></i>
+            <p>
+              Randevularım
+            </p>
+          </a>
+        </li>
+        @endif
+
         <li class="nav-item">
             <a href="/dashboard/logout" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
