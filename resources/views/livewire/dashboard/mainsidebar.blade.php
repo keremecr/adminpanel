@@ -67,55 +67,65 @@
             </p>
           </a>
         </li>
-        @if(auth()->user()->type=="admin")
+        @if(Auth::check())
+          @if(auth()->user()->type=="admin")
+            <li class="nav-item">
+              <a href="/dashboard/exams" class="nav-link">
+                <i class="nav-icon fa-thin fa-book-open"></i>
+                <p>
+                  Sınavlar
+                </p>
+              </a>
+            </li>
+          @endif
+        @endif
+        @if(Auth::check())
+          @if(auth()->user()->type=="user")
+            <li class="nav-item">
+              <a href="/dashboard/exams" class="nav-link">
+                <i class="nav-icon fa-thin fa-book-open"></i>
+                <p>
+                  Sınavlarım
+                </p>
+              </a>
+            </li>
+          @endif
+        @endif
+        @if(Auth::check())
+          @if(auth()->user()->type=="admin")
           <li class="nav-item">
-            <a href="/dashboard/exams" class="nav-link">
+            <a href="/dashboard/students" class="nav-link">
               <i class="nav-icon fa-thin fa-book-open"></i>
               <p>
-                Sınavlar
+                Öğrenciler
               </p>
             </a>
           </li>
+          @endif
         @endif
-        @if(auth()->user()->type=="user")
+        @if(Auth::check())
+          @if(auth()->user()->type=="admin")
           <li class="nav-item">
-            <a href="/dashboard/exams" class="nav-link">
+            <a href="/dashboard/appointments" class="nav-link">
               <i class="nav-icon fa-thin fa-book-open"></i>
               <p>
-                Sınavlarım
+                Randevular
               </p>
             </a>
           </li>
+          @endif
         @endif
-        @if(auth()->user()->type=="admin")
-        <li class="nav-item">
-          <a href="/dashboard/students" class="nav-link">
-            <i class="nav-icon fa-thin fa-book-open"></i>
-            <p>
-              Öğrenciler
-            </p>
-          </a>
-        </li>
-        @endif
-        @if(auth()->user()->type=="admin")
-        <li class="nav-item">
-          <a href="/dashboard/appointments" class="nav-link">
-            <i class="nav-icon fa-thin fa-book-open"></i>
-            <p>
-              Randevular
-            </p>
-          </a>
-        </li>
-        @endif
-        @if(auth()->user()->type=="user")
-        <li class="nav-item">
-          <a href="/dashboard/appointments" class="nav-link">
-            <i class="nav-icon fa-thin fa-book-open"></i>
-            <p>
-              Randevularım
-            </p>
-          </a>
-        </li>
+        @if(Auth::check())
+          @if(auth()->user()->type=="user")
+          <li class="nav-item">
+            <a href="/dashboard/appointments" class="nav-link">
+              <i class="nav-icon fa-thin fa-book-open"></i>
+              <p>
+                Randevularım
+              </p>
+            </a>
+          </li>
+          @endif
         @endif
 
         <li class="nav-item">

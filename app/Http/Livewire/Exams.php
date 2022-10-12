@@ -14,6 +14,7 @@ class Exams extends Component
       if(auth()->user()->type=='admin'){
         $exams=Exam::all();
         $this->exam=$exams;
+        return view('livewire.exams',compact('exams'));
       }
       else{
         $user=User::whereId(auth()->user()->id)->with('exams')->first();
@@ -28,8 +29,8 @@ class Exams extends Component
           $exam=Exam::where('name',$exam)->first();
           array_push($dates,$exam->date);
         }
+        return view('livewire.exams',compact('exams','dates'));
       }
-      return view('livewire.exams',compact('exams','dates'));
     }
     public function deleteExam($id){
       $exam=Exam::find($id) ?? abort(404,'Ders bulunamadı');

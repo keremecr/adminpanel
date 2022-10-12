@@ -23,8 +23,8 @@ class Subjecttraining extends Component
       'appointment.student_id' => 'required',
       'appointment.teacher_id'=>'required',
       'appointment.subject'=>'required',
-      'appointment.start_at'=>'required|after:'.now(),
-      'appointment.finish_at'=>'required|after:'.now()
+      'appointment.start_at'=>'required',
+      'appointment.finish_at'=>'required'
     ];
   }
   public function mount($subject){
@@ -55,6 +55,12 @@ class Subjecttraining extends Component
     if($appoint){
       session()->flash('message','Bu aralıkta hocamızın randevusu var');
       return view('livewire.subjecttraining');
+    }
+    else if(date($date)>=date($datebitis)){
+      session()->flash('message','Lütfen geçerli bir tarih aralığı girin');
+    }
+    else if(date($date)<=now() or date($datebitis)<=now()){
+      session()->flash('message','Lütfen geçerli bir tarih aralığı girin');
     }
     else{
       $this->appointment->save();

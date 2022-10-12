@@ -29,6 +29,8 @@ use App\Http\Livewire\Examanalyze;
 use App\Http\Livewire\Subjecttraining;
 use App\Http\Livewire\Appointments;
 use App\Http\Livewire\Appointmentupdate;
+use App\Http\Livewire\Forgetpassword;
+use App\Http\Livewire\Resetpassword;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +45,9 @@ use App\Http\Livewire\Appointmentupdate;
 Route::get('/', function () {
     return view('backend.auth.login');
 })->name('login');
+
+Route::get('/forgetpassword',Forgetpassword::class);
+Route::get('/resetpassword/{email}',Resetpassword::class)->name('changepassword');
 
 Route::prefix('dashboard')->middleware('auth')->group(function(){
   Route::get('/',DashboardIndex::class)->name('dashboard.index');

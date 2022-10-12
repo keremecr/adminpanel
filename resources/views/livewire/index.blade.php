@@ -1,39 +1,32 @@
-
-  <x-slot name="header">Yapılacak Aktiviteler</x-slot>
+<x-slot name="header">Yapılacak Aktiviteler</x-slot>
   <div class="card">
     <div class="card-body">
       <h5 class="card-title float-right">
         <a href="/dashboard/create" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Aktivite OLuştur</a>
       </h5>
-      <form method="GET" action="">
         <div class="form-row">
           <div class="col-md-2">
             <input type="text" name="title" value="{{request()->get('title')}}"  placeholder="Aktivite Adı" class="form-control">
           </div>
-          <div class="col-md-2">
-            <select class="form-control" onchange="this.form.submit()" name="status">
-              <option value="">Durum Seçiniz</option>
-              <option @if(request()->get('status')=='completed') selected @endif value="completed">Tamamlandı</option>
-              <option @if(request()->get('status')=='notcompleted') selected @endif value="notcompleted">Tamamlanmadı</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <select class="form-control" name="user_id">
-              @foreach($users as $user)
-              <option @if(request()->get('user_id')==$user->id) selected @endif value="{{$user->id}}">{{$user->name}}</option>
-              @endforeach
-            </select>
-          </div>
-          @if(request()->get('title') || request()->get('status') || request()->get('user_id'))
-           <div class="col-md-2">
-             <a href="#" class="btn btn-secondary">Sıfırla</a>
-           </div>
+          @if(auth()->user()->type=="admin")
+            <div class="col-md-2">
+              <select class="form-control"  wire:model="durum">
+                <option value="">Durum Seçiniz</option>
+                <option  value="completed">Tamamlandı</option>
+                <option  value="notcompleted">Tamamlanmadı</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" wire:model="byuser">
+                <option value="">Kullanıcı Seçiniz</option>
+                @foreach($users as $user)
+                <option value="{{$user->id}}">{{$user->name}}</option>
+                @endforeach
+              </select>
+            </div>
           @endif
-
         </div>
-      </form>
-
-      <table style="min-weight:600px"; class="table table-bordered mt-5">
+      <table style="margin-left:150px;"class="table table-bordered mt-5">
         <thead>
           <tr>
             <th scope="col">Aktivite Adı</th>
@@ -57,6 +50,5 @@
           @endforeach
         </tbody>
       </table>
-
     </div>
   </div>

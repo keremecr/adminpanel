@@ -13,13 +13,27 @@ class Index extends Component
 {
 
     public $activite_id;
+    public $byuser=null;
+    public $durum=null;
 
     public function render()
     {
         if(auth()->user()->type=='admin'){
-          $activities=Activite::all();
+          if($this->byuser AND $this->durum){
+            $activities=Activite::where('user_id',$this->byuser)->where('status',$this->durum)->get();
+          }
+          else if($this->byuser){
+            $activities=Activite::where('user_id',$this->byuser)->get();
+          }
+          else if($this->durum){
+            $activities=Activite::where('status',$this->durum)->get();
+          }
+          else{
+              $activities=Activite::all();
+          }
+
         }
-        else{
+        else{          
           $activities=Activite::where('user_id',auth()->user()->id)->get();
         }
         $users=User::all();
